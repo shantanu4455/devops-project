@@ -1,0 +1,36 @@
+# Logs
+*.log
+logs/
+
+# Environment files
+.env
+.env.*
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# Kubernetes
+*.secret.yaml
+
+# Jenkins
+jenkins_home/
+
+# Docker
+docker-data/
+
+# Maven
+target/
+
+# Node.js
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
