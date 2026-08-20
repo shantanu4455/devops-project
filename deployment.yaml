@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: devops-demo
+  namespace: devops
+
+spec:
+
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: devops-demo
+
+  template:
+
+    metadata:
+      labels:
+        app: devops-demo
+
+    spec:
+
+      containers:
+
+        - name: devops-demo
+
+          image: nexus:8082/devops-demo:latest
+
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 8080
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+
+            initialDelaySeconds: 20
+            periodSeconds: 5
